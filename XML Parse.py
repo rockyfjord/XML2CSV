@@ -30,10 +30,4 @@ d2 = {}
 for header in columns:
     d2[header] = pd.Series(d[header], index=index)
 df = pd.DataFrame(d2, index=index, columns=columns)
-
-#writer = pd.ExcelWriter(r"C:\Users\hippr\Desktop\xml2excel\Dixtionary.xlsx", engine='xlsxwriter')
-#df.to_excel(writer, sheet_name='AlexPwned', index=False, encoding='utf-8')
-#writer.close()
-
-#CSV better for large XML files
 df.to_csv("DATA_DICTIONARY.csv", sep=',', encoding='utf-8', index=False)
