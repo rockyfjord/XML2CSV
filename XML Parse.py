@@ -11,7 +11,7 @@ index = [r for r in range(len(rows))]
 child <COLUMN></COLUMN> pair and we filter these out.'''
 cols = list(filter('\n'.__ne__, rows[0].contents))
 
-#column titles in order to pass to DataFrame
+#ordered column titles to pass to DataFrame
 columns = [c['name'] for c in cols]
 print(columns)
 
