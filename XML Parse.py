@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
-import pandas as pd
 from collections import defaultdict
+import pandas as pd
+
 
 xml_file = "DATA_DICTIONARY.xml"
 soup = BeautifulSoup(open(xml_file), "xml")
