@@ -16,8 +16,7 @@ index = [r for r in range(len(rows))]
 columns = [c['name'] for c in cols]
 print(columns)
 
-'''Using two dictionaries to create a DataFrame 
-From dict of Series or dicts -
+'''Create a DataFrame "From dict of Series" -
 http://pandas.pydata.org/pandas-docs/stable/dsintro.html'''
 
 d = defaultdict(list)
