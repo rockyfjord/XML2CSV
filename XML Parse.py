@@ -5,13 +5,13 @@ from collections import defaultdict
 xml_file = "DATA_DICTIONARY.xml"
 soup = BeautifulSoup(open(xml_file), "xml")
 rows = soup.find_all('ROW')
-index = [r for r in range(len(rows))]
 
 '''For some reason this xml file had a line break after each
 child <COLUMN></COLUMN> pair and we filter these out.
 (function __ne__ is called by !=)'''
-
 cols = list(filter('\n'.__ne__, rows[0].contents))
+
+index = [r for r in range(len(rows))]
 columns = [c['name'] for c in cols]
 print(columns)
 
