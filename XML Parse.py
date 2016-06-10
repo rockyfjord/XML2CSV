@@ -26,7 +26,6 @@ def main(xml_file):
 
     '''Using two dictionaries to create a DataFrame From dict of Series or dicts -
         http://pandas.pydata.org/pandas-docs/stable/dsintro.html'''
-
     d = defaultdict(list)
     for row in rows:
         for c in (list(filter('\n'.__ne__, row.contents))):
