@@ -12,7 +12,7 @@ for thing in directory:
         xml_files.append(thing)
 for thing in xml_files:
     xml_file = thing
-    soup = BeautifulSoup(open(xml_file), "xml")
+    soup = BeautifulSoup(open(xml_file), encoding='utf-8', 'xml')
     rows = soup.find_all('ROW')
     
     '''For some reason this xml file had a line break after each
