@@ -2,14 +2,23 @@ from bs4 import BeautifulSoup
 from collections import defaultdict
 import pandas as pd
 import os.path
+import errno
 import sys
 
 
 def location(xml_location):
+    def make_sure_path_exists(path):
+        try:
+            os.makedirs(path)
+        except OSError as exception:
+            if exception.errno != errno.EEXIST:
+                raise
     directory = os.path.dirname(xml_location)
+    output = "{}\{}".format(directory, 'CSV OUTPUT')
+    make_sure_path_exists(output)
     filename = os.path.basename(xml_location)
     csv_filename = ''.join((filename[:-4], '.csv'))
-    return dict(dir=directory, file=csv_filename)
+    return dict(dir=output, file=csv_filename)
 
 
 def main(xml_file):
@@ -35,8 +44,9 @@ def main(xml_file):
     for header in columns:
         d2[header] = pd.Series(d[header], index=index)
     df = pd.DataFrame(d2, index=index, columns=columns)
-    df.to_csv("{dir}\{file}".format(**location(xml_file)), sep=',', encoding='utf-8', index=False)
-
+    save_to = "{dir}\{file}".format(**location(xml_file))
+    df.to_csv(save_to, sep=',', encoding='utf-8', index=False)
+    print(save_to)
 
 if __name__ == '__main__':
     try:
