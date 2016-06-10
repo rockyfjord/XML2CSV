@@ -49,9 +49,10 @@ def main(xml_file):
     print(save_to)
 
 if __name__ == '__main__':
-    try:
-        for file in filter(lambda f: f.lower().endswith('xml'), sys.argv[1:]):
+    files = list(filter(lambda f: f.lower().endswith('xml'), sys.argv[1:]))
+    if files:
+        for file in files:
             main(file)
-    except IndexError:
+    else:
         print("Drag XML files onto script.")
-    input("Done. Press any key.")
+    input("\nPress any key to exit.")
