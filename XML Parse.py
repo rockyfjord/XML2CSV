@@ -23,7 +23,7 @@ def location(xml_location):
 
 def main(xml_file):
     print("Processing {}".format(xml_file))
-    soup = BeautifulSoup(open(xml_file), "xml")
+    soup = BeautifulSoup(open(xml_file, encoding='UTF-8'), "xml")
     rows = soup.find_all('ROW')
 
     '''For some reason this xml file had a line break after each child <COLUMN></COLUMN> pair;
@@ -45,7 +45,7 @@ def main(xml_file):
         d2[header] = pd.Series(d[header], index=index)
     df = pd.DataFrame(d2, index=index, columns=columns)
     save_to = "{dir}\{file}".format(**location(xml_file))
-    df.to_csv(save_to, sep=',', encoding='utf-8', index=False)
+    df.to_csv(save_to, sep=',', index=False)
     print(save_to)
 
 if __name__ == '__main__':
